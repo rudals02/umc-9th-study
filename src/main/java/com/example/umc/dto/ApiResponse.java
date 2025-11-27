@@ -1,59 +1,43 @@
 package com.example.umc.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ApiResponse<T> {
-
-    private boolean success;
-    private String code;
+    private Boolean success;
     private String message;
     private T data;
-    private LocalDateTime timestamp;
 
-    @Builder
-    public ApiResponse(boolean success, String code, String message, T data) {
-        this.success = success;
-        this.code = code;
-        this.message = message;
-        this.data = data;
-        this.timestamp = LocalDateTime.now();
-    }
-
-    // 성공 응답 (데이터 있음)
-    public static <T> ApiResponse<T> success(SuccessCode successCode, T data) {
+    // 데이터만 받는 success 메서드
+    public static <T> ApiResponse<T> success(T data) {
         return ApiResponse.<T>builder()
                 .success(true)
-                .code(successCode.getCode())
-                .message(successCode.getMessage())
+                .message("요청이 성공적으로 처리되었습니다.")
                 .data(data)
                 .build();
     }
 
-    // 성공 응답 (데이터 없음)
-    public static <T> ApiResponse<T> success(SuccessCode successCode) {
+    // 메시지와 데이터를 함께 받는 success 메서드
+    public static <T> ApiResponse<T> of(String message, T data) {
         return ApiResponse.<T>builder()
                 .success(true)
-                .code(successCode.getCode())
-                .message(successCode.getMessage())
+                .message(message)
+                .data(data)
                 .build();
     }
 
-    // 성공 응답 (커스텀 메시지)
-    public static <T> ApiResponse<T> success(SuccessCode successCode, String customMessage, T data) {
+    // 에러 응답
+    public static <T> ApiResponse<T> error(String message) {
         return ApiResponse.<T>builder()
-                .success(true)
-                .code(successCode.getCode())
-                .message(customMessage)
-                .data(data)
+                .success(false)
+                .message(message)
+                .data(null)
                 .build();
     }
 }

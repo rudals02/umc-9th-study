@@ -29,9 +29,10 @@ public enum SuccessCode {
 
     // Mission Success
     MISSION_START_SUCCESS(HttpStatus.CREATED, "M001", "미션이 시작되었습니다."),
-    MISSION_PROGRESS_SUCCESS(HttpStatus.OK, "M002", "미션 진행도가 업데이트되었습니다."),
-    MISSION_COMPLETE_SUCCESS(HttpStatus.OK, "M003", "미션이 완료되었습니다."),
-    MISSION_FETCH_SUCCESS(HttpStatus.OK, "M004", "미션 조회가 완료되었습니다."),
+    MISSION_CHALLENGE_SUCCESS(HttpStatus.CREATED, "M002", "미션 도전이 시작되었습니다."),
+    MISSION_PROGRESS_SUCCESS(HttpStatus.OK, "M003", "미션 진행도가 업데이트되었습니다."),
+    MISSION_COMPLETE_SUCCESS(HttpStatus.OK, "M004", "미션이 완료되었습니다."),
+    MISSION_FETCH_SUCCESS(HttpStatus.OK, "M005", "미션 조회가 완료되었습니다."),
 
     // Point Success
     POINT_EARN_SUCCESS(HttpStatus.OK, "P001", "포인트가 적립되었습니다."),

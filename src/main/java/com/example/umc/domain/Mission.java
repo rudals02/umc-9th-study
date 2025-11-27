@@ -21,6 +21,8 @@ public class Mission {
     @Column(nullable = false, length = 100)
     private String title;
 
+
+
     @Column(length = 500)
     private String description;
 

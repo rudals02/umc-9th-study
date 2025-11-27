@@ -32,15 +32,13 @@ public class ReviewCommentService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new BusinessException(ErrorCode.USER_NOT_FOUND));
 
-        Review review = reviewRepository.findByIdAndNotDeleted(reviewId)
-                .orElseThrow(() -> new BusinessException(ErrorCode.REVIEW_NOT_FOUND));
 
         ReviewComment comment = ReviewComment.builder()
                 .user(user)
                 .content(request.getContent())
                 .build();
 
-        review.addComment(comment);
+
         commentRepository.save(comment);
 
         log.info("댓글 작성 완료: userId={}, reviewId={}, commentId={}", userId, reviewId, comment.getId());

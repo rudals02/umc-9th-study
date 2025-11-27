@@ -3,10 +3,9 @@ spring:
     name: umc
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/umc_db?useSSL=false&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/intelfit?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password: Admin123!
-
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
